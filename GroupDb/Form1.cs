@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,6 +29,7 @@ namespace GroupDb
         {
             Form_Add.Visible = false;
             Form_Edit.Visible = false;
+            Form_Send.Visible = false;
         }
 
         private void PanelHide()
@@ -36,6 +38,8 @@ namespace GroupDb
                 Form_Add.Visible = false;
             if (Form_Edit.Visible == true)
                 Form_Edit.Visible = false;
+            if (Form_Send.Visible == true)
+                Form_Send.Visible = false;
         }
 
         private void PanelShow(Panel subMenu)
@@ -148,6 +152,43 @@ namespace GroupDb
             }
         }
 
-        
+        private void SendMessageButton_Click(object sender, EventArgs e)
+        {
+            PanelShow(Form_Send);
+        }
+
+
+        private void BTN_send_Click(object sender, EventArgs e)
+        {
+            MailMessage mail = new MailMessage(TXT_from.Text, TXT_to.Text, TXT_subject.Text, TXT_msgbody.Text);
+            try
+            {
+                mail.Attachments.Add(new Attachment(TXT_file.Text));
+            }
+            catch (Exception)
+            {
+            }
+            SmtpClient client = new SmtpClient("smtp.gmail.com");
+            client.Port = 587;
+            client.Credentials = new System.Net.NetworkCredential("sanderdemih@gmail.com", "");
+            client.EnableSsl = true;
+            client.Send(mail);
+            MessageBox.Show("Message sent!", "Successful", MessageBoxButtons.OK);
+            TXT_from.Text = "";
+            TXT_to.Text = "";
+            TXT_subject.Text = "";
+            TXT_msgbody.Text = "";
+            TXT_file.Text = "";
+        }
+
+        private void BTN_file_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Filter = "Image Files (*.bmp;*.jpg;*.jpeg,*.png)|*.BMP;*.JPG;*.JPEG;*.PNG";
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+                TXT_file.Text = op.FileName;
+            }
+        }
     }
 }

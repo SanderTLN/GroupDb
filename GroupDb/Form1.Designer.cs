@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.Add_Button = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.SendMessageButton = new System.Windows.Forms.Button();
             this.Remove_Button = new System.Windows.Forms.Button();
             this.Form_Edit = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -61,6 +62,17 @@
             this.tARpv19BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupdbDataSet1 = new GroupDb.GroupdbDataSet1();
             this.tARpv19TableAdapter = new GroupDb.GroupdbDataSet1TableAdapters.TARpv19TableAdapter();
+            this.Form_Send = new System.Windows.Forms.Panel();
+            this.BTN_send = new System.Windows.Forms.Button();
+            this.BTN_file = new System.Windows.Forms.Button();
+            this.TXT_file = new System.Windows.Forms.TextBox();
+            this.TXT_from = new System.Windows.Forms.TextBox();
+            this.LBL_from = new System.Windows.Forms.Label();
+            this.TXT_msgbody = new System.Windows.Forms.TextBox();
+            this.TXT_to = new System.Windows.Forms.TextBox();
+            this.LBL_to = new System.Windows.Forms.Label();
+            this.TXT_subject = new System.Windows.Forms.TextBox();
+            this.LBL_subject = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.Form_Edit.SuspendLayout();
             this.Form_Add.SuspendLayout();
@@ -70,6 +82,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tARpv19BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupdbDataSet1)).BeginInit();
+            this.Form_Send.SuspendLayout();
             this.SuspendLayout();
             // 
             // Add_Button
@@ -94,6 +107,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.Gray;
+            this.panel1.Controls.Add(this.SendMessageButton);
             this.panel1.Controls.Add(this.Remove_Button);
             this.panel1.Controls.Add(this.Form_Edit);
             this.panel1.Controls.Add(this.Edit_button);
@@ -105,6 +119,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(165, 511);
             this.panel1.TabIndex = 1;
+            // 
+            // SendMessageButton
+            // 
+            this.SendMessageButton.BackColor = System.Drawing.Color.Black;
+            this.SendMessageButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SendMessageButton.FlatAppearance.BorderSize = 0;
+            this.SendMessageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SendMessageButton.Font = new System.Drawing.Font("Nirmala UI", 12F);
+            this.SendMessageButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.SendMessageButton.Location = new System.Drawing.Point(0, 696);
+            this.SendMessageButton.Margin = new System.Windows.Forms.Padding(13, 3, 3, 3);
+            this.SendMessageButton.Name = "SendMessageButton";
+            this.SendMessageButton.Size = new System.Drawing.Size(148, 36);
+            this.SendMessageButton.TabIndex = 7;
+            this.SendMessageButton.Text = "Send message";
+            this.SendMessageButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SendMessageButton.UseVisualStyleBackColor = false;
+            this.SendMessageButton.Click += new System.EventHandler(this.SendMessageButton_Click);
             // 
             // Remove_Button
             // 
@@ -375,9 +407,9 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Silver;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(234, 29);
+            this.dataGridView1.Location = new System.Drawing.Point(234, 19);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(543, 215);
+            this.dataGridView1.Size = new System.Drawing.Size(543, 175);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
             // 
@@ -395,12 +427,152 @@
             // 
             this.tARpv19TableAdapter.ClearBeforeFill = true;
             // 
+            // Form_Send
+            // 
+            this.Form_Send.BackColor = System.Drawing.Color.Silver;
+            this.Form_Send.Controls.Add(this.BTN_send);
+            this.Form_Send.Controls.Add(this.BTN_file);
+            this.Form_Send.Controls.Add(this.TXT_file);
+            this.Form_Send.Controls.Add(this.TXT_from);
+            this.Form_Send.Controls.Add(this.LBL_from);
+            this.Form_Send.Controls.Add(this.TXT_msgbody);
+            this.Form_Send.Controls.Add(this.TXT_to);
+            this.Form_Send.Controls.Add(this.LBL_to);
+            this.Form_Send.Controls.Add(this.TXT_subject);
+            this.Form_Send.Controls.Add(this.LBL_subject);
+            this.Form_Send.Location = new System.Drawing.Point(190, 222);
+            this.Form_Send.Name = "Form_Send";
+            this.Form_Send.Size = new System.Drawing.Size(633, 263);
+            this.Form_Send.TabIndex = 3;
+            // 
+            // BTN_send
+            // 
+            this.BTN_send.BackColor = System.Drawing.Color.Gray;
+            this.BTN_send.FlatAppearance.BorderSize = 0;
+            this.BTN_send.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BTN_send.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
+            this.BTN_send.ForeColor = System.Drawing.Color.Black;
+            this.BTN_send.Location = new System.Drawing.Point(14, 221);
+            this.BTN_send.Name = "BTN_send";
+            this.BTN_send.Size = new System.Drawing.Size(142, 32);
+            this.BTN_send.TabIndex = 44;
+            this.BTN_send.Text = "Send message";
+            this.BTN_send.UseVisualStyleBackColor = false;
+            this.BTN_send.Click += new System.EventHandler(this.BTN_send_Click);
+            // 
+            // BTN_file
+            // 
+            this.BTN_file.BackColor = System.Drawing.Color.Gray;
+            this.BTN_file.FlatAppearance.BorderSize = 0;
+            this.BTN_file.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BTN_file.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
+            this.BTN_file.ForeColor = System.Drawing.Color.Black;
+            this.BTN_file.Location = new System.Drawing.Point(14, 134);
+            this.BTN_file.Name = "BTN_file";
+            this.BTN_file.Size = new System.Drawing.Size(124, 29);
+            this.BTN_file.TabIndex = 43;
+            this.BTN_file.Text = "Attach file...";
+            this.BTN_file.UseVisualStyleBackColor = false;
+            this.BTN_file.Click += new System.EventHandler(this.BTN_file_Click);
+            // 
+            // TXT_file
+            // 
+            this.TXT_file.BackColor = System.Drawing.Color.White;
+            this.TXT_file.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TXT_file.Font = new System.Drawing.Font("Calibri", 12F);
+            this.TXT_file.Location = new System.Drawing.Point(14, 169);
+            this.TXT_file.Multiline = true;
+            this.TXT_file.Name = "TXT_file";
+            this.TXT_file.Size = new System.Drawing.Size(291, 21);
+            this.TXT_file.TabIndex = 42;
+            // 
+            // TXT_from
+            // 
+            this.TXT_from.BackColor = System.Drawing.Color.White;
+            this.TXT_from.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TXT_from.Font = new System.Drawing.Font("Calibri", 12F);
+            this.TXT_from.Location = new System.Drawing.Point(80, 13);
+            this.TXT_from.Multiline = true;
+            this.TXT_from.Name = "TXT_from";
+            this.TXT_from.Size = new System.Drawing.Size(225, 21);
+            this.TXT_from.TabIndex = 40;
+            // 
+            // LBL_from
+            // 
+            this.LBL_from.AutoSize = true;
+            this.LBL_from.BackColor = System.Drawing.Color.Silver;
+            this.LBL_from.Cursor = System.Windows.Forms.Cursors.Default;
+            this.LBL_from.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.LBL_from.Location = new System.Drawing.Point(28, 11);
+            this.LBL_from.Name = "LBL_from";
+            this.LBL_from.Size = new System.Drawing.Size(51, 23);
+            this.LBL_from.TabIndex = 41;
+            this.LBL_from.Text = "From";
+            // 
+            // TXT_msgbody
+            // 
+            this.TXT_msgbody.BackColor = System.Drawing.Color.White;
+            this.TXT_msgbody.Font = new System.Drawing.Font("Calibri", 12F);
+            this.TXT_msgbody.Location = new System.Drawing.Point(311, 8);
+            this.TXT_msgbody.Multiline = true;
+            this.TXT_msgbody.Name = "TXT_msgbody";
+            this.TXT_msgbody.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.TXT_msgbody.Size = new System.Drawing.Size(313, 244);
+            this.TXT_msgbody.TabIndex = 39;
+            // 
+            // TXT_to
+            // 
+            this.TXT_to.BackColor = System.Drawing.Color.White;
+            this.TXT_to.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TXT_to.Font = new System.Drawing.Font("Calibri", 12F);
+            this.TXT_to.Location = new System.Drawing.Point(80, 49);
+            this.TXT_to.Multiline = true;
+            this.TXT_to.Name = "TXT_to";
+            this.TXT_to.Size = new System.Drawing.Size(225, 21);
+            this.TXT_to.TabIndex = 35;
+            // 
+            // LBL_to
+            // 
+            this.LBL_to.AutoSize = true;
+            this.LBL_to.BackColor = System.Drawing.Color.Silver;
+            this.LBL_to.Cursor = System.Windows.Forms.Cursors.Default;
+            this.LBL_to.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.LBL_to.Location = new System.Drawing.Point(52, 47);
+            this.LBL_to.Name = "LBL_to";
+            this.LBL_to.Size = new System.Drawing.Size(27, 23);
+            this.LBL_to.TabIndex = 36;
+            this.LBL_to.Text = "To";
+            // 
+            // TXT_subject
+            // 
+            this.TXT_subject.BackColor = System.Drawing.Color.White;
+            this.TXT_subject.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TXT_subject.Font = new System.Drawing.Font("Calibri", 12F);
+            this.TXT_subject.Location = new System.Drawing.Point(80, 89);
+            this.TXT_subject.Multiline = true;
+            this.TXT_subject.Name = "TXT_subject";
+            this.TXT_subject.Size = new System.Drawing.Size(225, 21);
+            this.TXT_subject.TabIndex = 33;
+            // 
+            // LBL_subject
+            // 
+            this.LBL_subject.AutoSize = true;
+            this.LBL_subject.BackColor = System.Drawing.Color.Silver;
+            this.LBL_subject.Cursor = System.Windows.Forms.Cursors.Default;
+            this.LBL_subject.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.LBL_subject.Location = new System.Drawing.Point(15, 87);
+            this.LBL_subject.Name = "LBL_subject";
+            this.LBL_subject.Size = new System.Drawing.Size(64, 23);
+            this.LBL_subject.TabIndex = 34;
+            this.LBL_subject.Text = "Theme";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(844, 511);
+            this.Controls.Add(this.Form_Send);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
@@ -417,6 +589,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tARpv19BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupdbDataSet1)).EndInit();
+            this.Form_Send.ResumeLayout(false);
+            this.Form_Send.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -455,6 +629,18 @@
         private System.Windows.Forms.TextBox GroupEditBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox GroupBox;
+        private System.Windows.Forms.Button SendMessageButton;
+        private System.Windows.Forms.Panel Form_Send;
+        private System.Windows.Forms.TextBox TXT_file;
+        private System.Windows.Forms.TextBox TXT_from;
+        private System.Windows.Forms.Label LBL_from;
+        private System.Windows.Forms.TextBox TXT_msgbody;
+        private System.Windows.Forms.TextBox TXT_to;
+        private System.Windows.Forms.Label LBL_to;
+        private System.Windows.Forms.TextBox TXT_subject;
+        private System.Windows.Forms.Label LBL_subject;
+        private System.Windows.Forms.Button BTN_file;
+        private System.Windows.Forms.Button BTN_send;
     }
 }
 
