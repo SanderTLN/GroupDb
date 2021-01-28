@@ -204,5 +204,36 @@ namespace GroupDb
                 Application.Exit();
             }
         }
+
+        private void Parents_Cbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Parents_Cbox.Checked == true && Id != 0)
+            {
+                connection.Open();
+                DataTable table = new DataTable();
+                adapter = new SqlDataAdapter("SELECT * FROM Parent ORDER BY Id", connection);
+                cmd = new SqlCommand("SELECT * FROM Parent WHERE ChildrenId = @childredid", connection);
+                cmd.Parameters.AddWithValue("@childredid", Id);
+                adapter.SelectCommand = cmd;
+                adapter.Fill(table);
+                dataGridView1.DataSource = table;
+                connection.Close();
+            }
+            else if (Parents_Cbox.Checked == false)
+            {
+                connection.Open();
+                string query = "SELECT *FROM TARpv19 ORDER BY Id";
+                adapter = new SqlDataAdapter(query, connection);
+                DataTable table = new DataTable();
+                adapter.Fill(table);
+                dataGridView1.DataSource = table;
+                connection.Close();
+            }
+            else if (Id == 0)
+            {
+                Parents_Cbox.Checked = false;
+                MessageBox.Show("Plese select a student", "Alert", MessageBoxButtons.OK);
+            }
+        }
     }
 }

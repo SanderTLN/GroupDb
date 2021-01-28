@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.Add_Button = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Exit_Button = new System.Windows.Forms.Button();
             this.SendMessageButton = new System.Windows.Forms.Button();
             this.Remove_Button = new System.Windows.Forms.Button();
             this.Form_Edit = new System.Windows.Forms.Panel();
@@ -73,7 +74,7 @@
             this.LBL_to = new System.Windows.Forms.Label();
             this.TXT_subject = new System.Windows.Forms.TextBox();
             this.LBL_subject = new System.Windows.Forms.Label();
-            this.Exit_Button = new System.Windows.Forms.Button();
+            this.Parents_Cbox = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.Form_Edit.SuspendLayout();
             this.Form_Add.SuspendLayout();
@@ -121,6 +122,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(165, 511);
             this.panel1.TabIndex = 1;
+            // 
+            // Exit_Button
+            // 
+            this.Exit_Button.BackColor = System.Drawing.Color.Black;
+            this.Exit_Button.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Exit_Button.FlatAppearance.BorderSize = 0;
+            this.Exit_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Exit_Button.Font = new System.Drawing.Font("Nirmala UI", 12F);
+            this.Exit_Button.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Exit_Button.Location = new System.Drawing.Point(0, 732);
+            this.Exit_Button.Margin = new System.Windows.Forms.Padding(13, 3, 3, 3);
+            this.Exit_Button.Name = "Exit_Button";
+            this.Exit_Button.Size = new System.Drawing.Size(148, 36);
+            this.Exit_Button.TabIndex = 8;
+            this.Exit_Button.Text = "Exit";
+            this.Exit_Button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Exit_Button.UseVisualStyleBackColor = false;
+            this.Exit_Button.Click += new System.EventHandler(this.Exit_Button_Click);
             // 
             // SendMessageButton
             // 
@@ -199,7 +218,7 @@
             this.button1.BackColor = System.Drawing.Color.Gray;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Nirmala UI", 10.18868F);
+            this.button1.Font = new System.Drawing.Font("Nirmala UI", 12F);
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Location = new System.Drawing.Point(8, 204);
             this.button1.Name = "button1";
@@ -322,7 +341,7 @@
             this.Submit_Button.BackColor = System.Drawing.Color.Gray;
             this.Submit_Button.FlatAppearance.BorderSize = 0;
             this.Submit_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Submit_Button.Font = new System.Drawing.Font("Nirmala UI", 10.18868F);
+            this.Submit_Button.Font = new System.Drawing.Font("Nirmala UI", 12F);
             this.Submit_Button.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Submit_Button.Location = new System.Drawing.Point(12, 199);
             this.Submit_Button.Name = "Submit_Button";
@@ -409,7 +428,7 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Silver;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(234, 19);
+            this.dataGridView1.Location = new System.Drawing.Point(190, 19);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(543, 175);
             this.dataGridView1.TabIndex = 2;
@@ -568,23 +587,21 @@
             this.LBL_subject.TabIndex = 34;
             this.LBL_subject.Text = "Theme";
             // 
-            // Exit_Button
+            // Parents_Cbox
             // 
-            this.Exit_Button.BackColor = System.Drawing.Color.Black;
-            this.Exit_Button.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Exit_Button.FlatAppearance.BorderSize = 0;
-            this.Exit_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Exit_Button.Font = new System.Drawing.Font("Nirmala UI", 12F);
-            this.Exit_Button.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Exit_Button.Location = new System.Drawing.Point(0, 732);
-            this.Exit_Button.Margin = new System.Windows.Forms.Padding(13, 3, 3, 3);
-            this.Exit_Button.Name = "Exit_Button";
-            this.Exit_Button.Size = new System.Drawing.Size(148, 36);
-            this.Exit_Button.TabIndex = 8;
-            this.Exit_Button.Text = "Exit";
-            this.Exit_Button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Exit_Button.UseVisualStyleBackColor = false;
-            this.Exit_Button.Click += new System.EventHandler(this.Exit_Button_Click);
+            this.Parents_Cbox.AutoSize = true;
+            this.Parents_Cbox.BackColor = System.Drawing.Color.Gray;
+            this.Parents_Cbox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Parents_Cbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.Parents_Cbox.ForeColor = System.Drawing.SystemColors.Control;
+            this.Parents_Cbox.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Parents_Cbox.Location = new System.Drawing.Point(745, 19);
+            this.Parents_Cbox.Name = "Parents_Cbox";
+            this.Parents_Cbox.Size = new System.Drawing.Size(78, 22);
+            this.Parents_Cbox.TabIndex = 4;
+            this.Parents_Cbox.Text = "Parents";
+            this.Parents_Cbox.UseVisualStyleBackColor = false;
+            this.Parents_Cbox.CheckedChanged += new System.EventHandler(this.Parents_Cbox_CheckedChanged);
             // 
             // Form1
             // 
@@ -592,6 +609,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(844, 511);
+            this.Controls.Add(this.Parents_Cbox);
             this.Controls.Add(this.Form_Send);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
@@ -612,6 +630,7 @@
             this.Form_Send.ResumeLayout(false);
             this.Form_Send.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -662,6 +681,7 @@
         private System.Windows.Forms.Button BTN_file;
         private System.Windows.Forms.Button BTN_send;
         private System.Windows.Forms.Button Exit_Button;
+        private System.Windows.Forms.CheckBox Parents_Cbox;
     }
 }
 
