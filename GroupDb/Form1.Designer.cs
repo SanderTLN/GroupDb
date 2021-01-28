@@ -73,6 +73,7 @@
             this.LBL_to = new System.Windows.Forms.Label();
             this.TXT_subject = new System.Windows.Forms.TextBox();
             this.LBL_subject = new System.Windows.Forms.Label();
+            this.Exit_Button = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.Form_Edit.SuspendLayout();
             this.Form_Add.SuspendLayout();
@@ -107,6 +108,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.Gray;
+            this.panel1.Controls.Add(this.Exit_Button);
             this.panel1.Controls.Add(this.SendMessageButton);
             this.panel1.Controls.Add(this.Remove_Button);
             this.panel1.Controls.Add(this.Form_Edit);
@@ -566,6 +568,24 @@
             this.LBL_subject.TabIndex = 34;
             this.LBL_subject.Text = "Theme";
             // 
+            // Exit_Button
+            // 
+            this.Exit_Button.BackColor = System.Drawing.Color.Black;
+            this.Exit_Button.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Exit_Button.FlatAppearance.BorderSize = 0;
+            this.Exit_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Exit_Button.Font = new System.Drawing.Font("Nirmala UI", 12F);
+            this.Exit_Button.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Exit_Button.Location = new System.Drawing.Point(0, 732);
+            this.Exit_Button.Margin = new System.Windows.Forms.Padding(13, 3, 3, 3);
+            this.Exit_Button.Name = "Exit_Button";
+            this.Exit_Button.Size = new System.Drawing.Size(148, 36);
+            this.Exit_Button.TabIndex = 8;
+            this.Exit_Button.Text = "Exit";
+            this.Exit_Button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Exit_Button.UseVisualStyleBackColor = false;
+            this.Exit_Button.Click += new System.EventHandler(this.Exit_Button_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -641,6 +661,7 @@
         private System.Windows.Forms.Label LBL_subject;
         private System.Windows.Forms.Button BTN_file;
         private System.Windows.Forms.Button BTN_send;
+        private System.Windows.Forms.Button Exit_Button;
     }
 }
 

@@ -112,43 +112,49 @@ namespace GroupDb
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (NameEditBox.Text != "" && NumberEditBox.Text != "" && EmailEditBox.Text != "")
+            if (MessageBox.Show("Do you want to update record?", "Update", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                cmd = new SqlCommand("update TARpv19 set Name=@name,Number=@number,Email=@email where Id=@id", connection);
-                connection.Open();
-                cmd.Parameters.AddWithValue("@id", Id);
-                cmd.Parameters.AddWithValue("@name", NameEditBox.Text);
-                cmd.Parameters.AddWithValue("@number", NumberEditBox.Text);
-                cmd.Parameters.AddWithValue("@email", EmailEditBox.Text.Replace(',', '.'));
-                cmd.Parameters.AddWithValue("@group", GroupEditBox.Text);
-                cmd.ExecuteNonQuery();
-                connection.Close();
-                LoadData();
-                ClearData();
-                MessageBox.Show("Record Updated Successfully");
-            }
-            else
-            {
-                MessageBox.Show("Error");
-            }
+                if (NameEditBox.Text != "" && NumberEditBox.Text != "" && EmailEditBox.Text != "")
+                {
+                    cmd = new SqlCommand("update TARpv19 set Name=@name,Number=@number,Email=@email where Id=@id", connection);
+                    connection.Open();
+                    cmd.Parameters.AddWithValue("@id", Id);
+                    cmd.Parameters.AddWithValue("@name", NameEditBox.Text);
+                    cmd.Parameters.AddWithValue("@number", NumberEditBox.Text);
+                    cmd.Parameters.AddWithValue("@email", EmailEditBox.Text.Replace(',', '.'));
+                    cmd.Parameters.AddWithValue("@group", GroupEditBox.Text);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                    LoadData();
+                    ClearData();
+                    MessageBox.Show("Record Updated Successfully");
+                }
+                else
+                {
+                    MessageBox.Show("Error");
+                }
+            }    
         }
 
         private void Remove_Button_Click(object sender, EventArgs e)
         {
-            if (Id != 0)
+            if (MessageBox.Show("Do you want to delete record?", "Remove", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                cmd = new SqlCommand("delete TARpv19 where ID=@id", connection);
-                connection.Open();
-                cmd.Parameters.AddWithValue("@id", Id);
-                cmd.ExecuteNonQuery();
-                connection.Close();
-                MessageBox.Show("Record Deleted Successfully!");
-                LoadData();
-                ClearData();
-            }
-            else
-            {
-                MessageBox.Show("Please Select Record to Delete");
+                if (Id != 0)
+                {
+                    cmd = new SqlCommand("delete TARpv19 where ID=@id", connection);
+                    connection.Open();
+                    cmd.Parameters.AddWithValue("@id", Id);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                    MessageBox.Show("Record Deleted Successfully!");
+                    LoadData();
+                    ClearData();
+                }
+                else
+                {
+                    MessageBox.Show("Please Select Record to Delete");
+                }
             }
         }
 
@@ -188,6 +194,14 @@ namespace GroupDb
             if (op.ShowDialog() == DialogResult.OK)
             {
                 TXT_file.Text = op.FileName;
+            }
+        }
+
+        private void Exit_Button_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you realy want to quit?", "Exit", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Application.Exit();
             }
         }
     }
