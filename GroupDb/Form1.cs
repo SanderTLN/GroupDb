@@ -15,6 +15,7 @@ namespace GroupDb
     public partial class Form1 : Form
     {
         int Id = 0;
+        int Age = 0;
         SqlCommand cmd;
         SqlDataAdapter adapter;
         SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\AppData\Groupdb.mdf; Integrated Security = True");
@@ -69,6 +70,7 @@ namespace GroupDb
             NameBox.Text = "";
             NumberBox.Text = "";
             EmailBox.Text = "";
+            AgeBox.Text = "";
             GroupBox.Text = "";
         }
 
@@ -92,16 +94,18 @@ namespace GroupDb
             NameEditBox.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             NumberEditBox.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             EmailEditBox.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-            GroupEditBox.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            Age = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString());
+            GroupEditBox.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
         }
 
         private void Submit_Button_Click(object sender, EventArgs e)
         {
             connection.Open();
-            cmd = new SqlCommand("INSERT INTO TARpv19(Name,Number,Email,GroupName) VALUES (@name,@number,@email,@group)", connection);
+            cmd = new SqlCommand("INSERT INTO TARpv19(Name,Number,Email,Age,GroupName) VALUES (@name,@number,@email,@age,@group)", connection);
             cmd.Parameters.AddWithValue("@name", NameBox.Text);
             cmd.Parameters.AddWithValue("@number", NumberBox.Text);
             cmd.Parameters.AddWithValue("@email", EmailBox.Text);
+            cmd.Parameters.AddWithValue("@age", AgeBox.Text);
             cmd.Parameters.AddWithValue("@group", GroupBox.Text);
             cmd.ExecuteNonQuery();
             connection.Close();
@@ -114,14 +118,15 @@ namespace GroupDb
         {
             if (MessageBox.Show("Do you want to update record?", "Update", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                if (NameEditBox.Text != "" && NumberEditBox.Text != "" && EmailEditBox.Text != "")
+                if (NameEditBox.Text != "" && NumberEditBox.Text != "" && EmailEditBox.Text != "" && AgeEditBox.Text != "")
                 {
-                    cmd = new SqlCommand("update TARpv19 set Name=@name,Number=@number,Email=@email where Id=@id", connection);
+                    cmd = new SqlCommand("update TARpv19 set Name=@name,Number=@number,Email=@email,Age=@age where Id=@id", connection);
                     connection.Open();
                     cmd.Parameters.AddWithValue("@id", Id);
                     cmd.Parameters.AddWithValue("@name", NameEditBox.Text);
                     cmd.Parameters.AddWithValue("@number", NumberEditBox.Text);
                     cmd.Parameters.AddWithValue("@email", EmailEditBox.Text.Replace(',', '.'));
+                    cmd.Parameters.AddWithValue("@age", AgeEditBox.Text);
                     cmd.Parameters.AddWithValue("@group", GroupEditBox.Text);
                     cmd.ExecuteNonQuery();
                     connection.Close();
@@ -207,7 +212,7 @@ namespace GroupDb
 
         private void Parents_Cbox_CheckedChanged(object sender, EventArgs e)
         {
-            if (Parents_Cbox.Checked == true && Id != 0)
+            if (Parents_Cbox.Checked == true && Id != 0 && Age < 18)
             {
                 connection.Open();
                 DataTable table = new DataTable();
@@ -228,6 +233,11 @@ namespace GroupDb
                 adapter.Fill(table);
                 dataGridView1.DataSource = table;
                 connection.Close();
+            }
+            else if (Age >= 18)
+            {
+                Parents_Cbox.Checked = false;
+                MessageBox.Show("This student a 18 or more years old and we don't have permission to show his parents!", "No permission", MessageBoxButtons.OK);
             }
             else if (Id == 0)
             {
